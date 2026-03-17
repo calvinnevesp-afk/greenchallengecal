@@ -191,7 +191,7 @@ export default function HomePage() {
           <div className="w-10 h-10 bg-foreground rounded-full flex items-center justify-center shadow-lg">
             <Zap className="w-6 h-6 text-accent-green" />
           </div>
-          <span className="font-heading text-xl hidden md:block text-foreground tracking-tight">Campus RSE</span>
+          <span className="font-heading text-xl hidden md:block text-foreground tracking-tight">Green Challenge</span>
         </div>
 
         {isAuthenticated && member ? (

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Image } from '@/components/ui/image';
 import { SignIn } from '@/components/ui/sign-in';
 import { Trophy, Zap, Users, Award } from 'lucide-react';
 
@@ -23,11 +24,56 @@ export default function LoginPage() {
           </motion.div>
 
           <h1 className="font-heading text-4xl md:text-5xl text-foreground mb-3">
-            Campus RSE Challenge
+            Green Challenge
           </h1>
           <p className="font-paragraph text-lg text-foreground/80 mb-8">
             Rejoins la communauté et relève des défis RSE ! 🌱
           </p>
+
+          {/* RSE Theme Images */}
+          <div className="grid grid-cols-3 gap-3 mb-8">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3 }}
+              className="rounded-2xl overflow-hidden h-24 bg-accent-green/10"
+            >
+              <Image
+                src="https://static.wixstatic.com/media/7518df_bf5092d6e4164b21bc475b02b95397c0~mv2.png?originWidth=128&originHeight=128"
+                alt="RSE Environment"
+                className="w-full h-full object-cover"
+                width={100}
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.4 }}
+              className="rounded-2xl overflow-hidden h-24 bg-accent-blue/10"
+            >
+              <Image
+                src="https://static.wixstatic.com/media/7518df_aa0f8d48acd9490ea96e747f79c3f1da~mv2.png?originWidth=128&originHeight=128"
+                alt="RSE Social"
+                className="w-full h-full object-cover"
+                width={100}
+              />
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 }}
+              className="rounded-2xl overflow-hidden h-24 bg-accent-purple/10"
+            >
+              <Image
+                src="https://static.wixstatic.com/media/7518df_fd816b047e2940768d63d3078cb53b9d~mv2.png?originWidth=128&originHeight=128"
+                alt="RSE Community"
+                className="w-full h-full object-cover"
+                width={100}
+              />
+            </motion.div>
+          </div>
 
           {/* Features */}
           <div className="grid grid-cols-3 gap-4 mb-8">

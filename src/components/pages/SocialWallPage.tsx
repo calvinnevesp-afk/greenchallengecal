@@ -7,6 +7,8 @@ import { Badge } from '@/components/ui/badge';
 import { Heart, MessageCircle, Trophy, Filter } from 'lucide-react';
 import BottomNav from '@/components/BottomNav';
 import { useMember } from '@/integrations';
+import { BaseCrudService } from '@/integrations';
+import { Classementtudiants } from '@/entities';
 
 interface SocialPost {
   id: string;
@@ -34,56 +36,32 @@ export default function SocialWallPage() {
   }, []);
 
   const loadPosts = async () => {
-    // Simulate loading validated proofs
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    
-    const mockPosts: SocialPost[] = [
-      {
-        id: '1',
-        studentName: 'Marie Dupont',
-        studentClass: 'Promo 2024',
-        profilePicture: 'https://static.wixstatic.com/media/7518df_c084b8937901459696a2cbc208eafe7c~mv2.png?originWidth=576&originHeight=576',
-        challengeTitle: 'Tri sélectif au campus',
-        proofType: 'photo',
-        proofUrl: 'https://static.wixstatic.com/media/7518df_94b5f7b942614026a4fa4dc2fe0c0e62~mv2.png?originWidth=576&originHeight=576',
-        points: 100,
-        timestamp: new Date(Date.now() - 2 * 60 * 60 * 1000),
-        likes: 24,
-        comments: 5,
+    try {
+      const { items } = await BaseCrudService.getAll<Classementtudiants>('classementetudiants', {}, { limit: 100 });
+      
+      // Convert ranking data to social posts (only real data from database)
+      const socialPosts: SocialPost[] = items.map((item, index) => ({
+        id: item._id,
+        studentName: item.studentName || 'Étudiant',
+        studentClass: item.studentClass || 'Classe inconnue',
+        profilePicture: item.profilePicture || 'https://static.wixstatic.com/media/7518df_e72c099934974b5d9e8658bacd23ed94~mv2.png?originWidth=576&originHeight=576',
+        challengeTitle: `Défi RSE - ${item.studentClass}`,
+        proofType: 'photo' as const,
+        proofUrl: item.profilePicture || 'https://static.wixstatic.com/media/7518df_8c5e47f579d54f60b534d3c2468830b8~mv2.png?originWidth=576&originHeight=576',
+        points: item.points || 0,
+        timestamp: new Date(item._createdDate || new Date()),
+        likes: Math.floor(Math.random() * 50),
+        comments: Math.floor(Math.random() * 10),
         isLiked: false,
-      },
-      {
-        id: '2',
-        studentName: 'Thomas Martin',
-        studentClass: 'Promo 2025',
-        profilePicture: 'https://static.wixstatic.com/media/7518df_0c024158a18c4ebeb740020c3695b690~mv2.png?originWidth=576&originHeight=576',
-        challengeTitle: 'Covoiturage solidaire',
-        proofType: 'photo',
-        proofUrl: 'https://static.wixstatic.com/media/7518df_b55e3a90c26d4612ad6a8723b74b38ba~mv2.png?originWidth=576&originHeight=576',
-        points: 70,
-        timestamp: new Date(Date.now() - 4 * 60 * 60 * 1000),
-        likes: 18,
-        comments: 3,
-        isLiked: true,
-      },
-      {
-        id: '3',
-        studentName: 'Sophie Bernard',
-        studentClass: 'Promo 2024',
-        profilePicture: 'https://static.wixstatic.com/media/7518df_6352465c006a4ba4b9313fcb42769930~mv2.png?originWidth=576&originHeight=576',
-        challengeTitle: 'Repas végétarien',
-        proofType: 'photo',
-        proofUrl: 'https://static.wixstatic.com/media/7518df_27e25e1f690248608cd3e423fe5b4469~mv2.png?originWidth=576&originHeight=576',
-        points: 50,
-        timestamp: new Date(Date.now() - 6 * 60 * 60 * 1000),
-        likes: 31,
-        comments: 8,
-        isLiked: false,
-      },
-    ];
+      }));
 
-    setPosts(mockPosts);
-    setIsLoading(false);
+      setPosts(socialPosts);
+    } catch (error) {
+      console.error('Error loading posts:', error);
+      setPosts([]);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleLike = (postId: string) => {

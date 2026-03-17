@@ -26,11 +26,15 @@ export default function ProfilePage() {
       
       setTotalStudents(totalCount);
       
-      // Find user's ranking (in real app, match by user ID)
-      const userEmail = member?.loginEmail;
-      if (userEmail) {
+      // Find user's ranking by firstName and lastName
+      const firstName = sessionStorage.getItem('userFirstName') || member?.contact?.firstName || '';
+      const lastName = sessionStorage.getItem('userLastName') || member?.contact?.lastName || '';
+      
+      if (firstName || lastName) {
         const userRank = items.find(item => 
-          item.studentName?.toLowerCase().includes(member?.contact?.firstName?.toLowerCase() || '')
+          (item.firstName?.toLowerCase() === firstName.toLowerCase() || 
+           item.lastName?.toLowerCase() === lastName.toLowerCase() ||
+           item.studentName?.toLowerCase().includes(firstName.toLowerCase()))
         );
         if (userRank) {
           setUserRanking(userRank);
@@ -83,12 +87,12 @@ export default function ProfilePage() {
             </div>
 
             <h1 className="font-heading text-3xl md:text-4xl text-foreground mb-2">
-              {member?.profile?.nickname || member?.contact?.firstName || 'Étudiant'}
+              {sessionStorage.getItem('userFirstName') || member?.profile?.nickname || member?.contact?.firstName || 'Étudiant'}
             </h1>
             
-            {member?.contact?.lastName && (
+            {(sessionStorage.getItem('userLastName') || member?.contact?.lastName) && (
               <p className="font-paragraph text-lg text-foreground/80 mb-4">
-                {member.contact.lastName}
+                {sessionStorage.getItem('userLastName') || member?.contact?.lastName}
               </p>
             )}
           </motion.div>
@@ -180,9 +184,9 @@ export default function ProfilePage() {
                       <GraduationCap className="w-5 h-5 text-accent-purple" />
                     </div>
                     <div className="flex-1">
-                      <p className="font-paragraph text-sm text-foreground/60 mb-1">Promotion</p>
+                      <p className="font-paragraph text-sm text-foreground/60 mb-1">Classe</p>
                       <p className="font-paragraph font-semibold text-foreground">
-                        {userRanking.studentClass}
+                        {sessionStorage.getItem('userClass') || userRanking.studentClass}
                       </p>
                     </div>
                   </div>

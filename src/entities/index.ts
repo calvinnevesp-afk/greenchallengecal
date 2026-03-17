@@ -13,6 +13,10 @@ export interface Classementtudiants {
   _updatedDate?: Date;
   /** @wixFieldType text */
   studentName?: string;
+  /** @wixFieldType text */
+  lastName?: string;
+  /** @wixFieldType text */
+  firstName?: string;
   /** @wixFieldType image - Contains image URL, render with <Image> component, NOT as text */
   profilePicture?: string;
   /** @wixFieldType text */
