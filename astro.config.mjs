@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import cloudProviderFetchAdapter from "@wix/cloud-provider-fetch-adapter";
+import vercel from "@astrojs/vercel"; // Modifié ici
 import wix from "@wix/astro";
 import monitoring from "@wix/monitoring-astro";
 import react from "@astrojs/react";
@@ -15,6 +15,7 @@ const isBuild = process.env.NODE_ENV == "production";
 // https://astro.build/config
 export default defineConfig({
   output: "server",
+  adapter: vercel(), // Modifié ici pour Vercel
   integrations: [
     {
       name: "framewire",
@@ -66,7 +67,6 @@ export default defineConfig({
       },
     } : undefined,
   },
-  ...(isBuild && { adapter: cloudProviderFetchAdapter({}) }),
   devToolbar: {
     enabled: false,
   },
