@@ -23,18 +23,18 @@ export default {
                 paragraph: "quicksand"
             },
             colors: {
-                'accent-green': '#39FF14',
-                'accent-blue': '#007AFF',
-                'accent-yellow': '#FFD600',
-                'accent-purple': '#AF52DE',
-                destructive: '#FF3B30',
+                'accent-green': '#10B981',
+                'accent-blue': '#0891B2',
+                'accent-yellow': '#F59E0B',
+                'accent-purple': '#8B5CF6',
+                destructive: '#EF4444',
                 'destructive-foreground': '#FFFFFF',
-                background: '#FFFFFF',
-                secondary: '#007AFF',
-                foreground: '#333333',
+                background: '#F9FAFB',
+                secondary: '#0891B2',
+                foreground: '#1F2937',
                 'secondary-foreground': '#FFFFFF',
-                'primary-foreground': '#000000',
-                primary: '#39FF14'
+                'primary-foreground': '#FFFFFF',
+                primary: '#10B981'
             },
         },
     },

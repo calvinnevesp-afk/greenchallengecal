@@ -76,7 +76,7 @@ export default function ClassementPage() {
   return (
     <div className="min-h-screen bg-background pb-24">
       {/* Header */}
-      <div className="bg-gradient-to-br from-accent-yellow/20 via-accent-purple/10 to-accent-blue/20 px-6 py-8 rounded-b-[3rem]">
+      <div className="bg-gradient-to-br from-accent-green/20 via-accent-blue/10 to-accent-yellow/20 px-6 py-8 rounded-b-[3rem]">
         <div className="max-w-[100rem] mx-auto">
           <h1 className="font-heading text-4xl md:text-5xl text-foreground mb-2 flex items-center gap-3">
             <Trophy className="w-10 h-10 text-accent-yellow" />

@@ -145,7 +145,7 @@ export default function HomePage() {
   );
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-[#F8F9FA] pb-32 overflow-clip relative selection:bg-accent-green selection:text-primary-foreground">
+    <div ref={containerRef} className="min-h-screen bg-[#F9FAFB] pb-32 overflow-clip relative selection:bg-accent-green selection:text-primary-foreground">
       
       {/* --- Global Scoped Styles for Organic Shapes --- */}
       <style>{`
@@ -175,9 +175,9 @@ export default function HomePage() {
         style={{ y: backgroundY }}
         className="fixed inset-0 z-0 pointer-events-none overflow-hidden"
       >
-        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-accent-green/10 organic-blob-1 blur-3xl" />
-        <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[40vw] bg-accent-blue/10 organic-blob-2 blur-3xl" />
-        <div className="absolute bottom-[-20%] left-[20%] w-[60vw] h-[60vw] bg-accent-yellow/10 organic-blob-1 blur-3xl" />
+        <div className="absolute top-[-10%] left-[-10%] w-[50vw] h-[50vw] bg-accent-green/15 organic-blob-1 blur-3xl" />
+        <div className="absolute top-[20%] right-[-10%] w-[40vw] h-[40vw] bg-accent-blue/15 organic-blob-2 blur-3xl" />
+        <div className="absolute bottom-[-20%] left-[20%] w-[60vw] h-[60vw] bg-accent-yellow/15 organic-blob-1 blur-3xl" />
         {/* Subtle Grid Overlay */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgwLDAsMCwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-50" />
       </motion.div>
@@ -284,7 +284,12 @@ export default function HomePage() {
                       </motion.div>
                     ) : (
                       <div className="w-full h-full bg-gradient-to-br from-accent-green/20 to-accent-blue/20 flex items-center justify-center">
-                        <Leaf className="w-32 h-32 text-foreground/10" />
+                        <Image
+                          src="https://static.wixstatic.com/media/7518df_a40571d7b6604b1a9d1e4b50ee363969~mv2.png?originWidth=1600&originHeight=896"
+                          alt="RSE Challenge"
+                          className="w-full h-full object-cover"
+                          width={1600}
+                        />
                       </div>
                     )}
                     
@@ -388,9 +393,18 @@ export default function HomePage() {
                             width={600}
                           />
                         ) : (
-                          <div className={`w-full h-full ${config.color} opacity-20 flex items-center justify-center`}>
-                            <Icon className="w-16 h-16 text-foreground/20" />
-                          </div>
+                          <Image
+                            src={
+                              index === 0 
+                                ? "https://static.wixstatic.com/media/7518df_2a21e974220d4f2e8dbffc7becfff1ac~mv2.png?originWidth=576&originHeight=576"
+                                : index === 1
+                                ? "https://static.wixstatic.com/media/7518df_391bceb2613e47889da2bebd36b3db84~mv2.png?originWidth=576&originHeight=576"
+                                : "https://static.wixstatic.com/media/7518df_c783ce9716694cebb562d24f959be71f~mv2.png?originWidth=576&originHeight=576"
+                            }
+                            alt={challenge.challengeTitle || 'Challenge'}
+                            className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            width={600}
+                          />
                         )}
                         
                         {/* Date Pill */}
