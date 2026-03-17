@@ -11,6 +11,7 @@ import { DfisRSE } from '@/entities';
 import { Clock, Trophy, Zap, Users, ArrowRight, Sparkles, Leaf, Heart, BookOpen } from 'lucide-react';
 import BottomNav from '@/components/BottomNav';
 import ProofSubmissionDialog from '@/components/ProofSubmissionDialog';
+import TreeLogo from '@/components/TreeLogo';
 
 // --- Utility for Category Styling ---
 const getCategoryConfig = (category?: string) => {
@@ -189,7 +190,7 @@ export default function HomePage() {
       >
         <div className="flex items-center gap-2">
           <div className="w-10 h-10 bg-foreground rounded-full flex items-center justify-center shadow-lg">
-            <Zap className="w-6 h-6 text-accent-green" />
+            <TreeLogo size={24} className="text-accent-green" />
           </div>
           <span className="font-heading text-xl hidden md:block text-foreground tracking-tight">Green Challenge</span>
         </div>
