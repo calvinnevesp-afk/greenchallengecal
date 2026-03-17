@@ -147,7 +147,6 @@ export default function HomePage() {
 
   return (
     <div ref={containerRef} className="min-h-screen bg-[#F9FAFB] pb-32 overflow-clip relative selection:bg-accent-green selection:text-primary-foreground">
-      
       {/* --- Global Scoped Styles for Organic Shapes --- */}
       <style>{`
         .organic-blob-1 {
@@ -170,7 +169,6 @@ export default function HomePage() {
           border: 1px solid rgba(255, 255, 255, 0.5);
         }
       `}</style>
-
       {/* --- Dynamic Background Parallax --- */}
       <motion.div 
         style={{ y: backgroundY }}
@@ -182,16 +180,13 @@ export default function HomePage() {
         {/* Subtle Grid Overlay */}
         <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI0MCIgaGVpZ2h0PSI0MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAwIDEwIEwgNDAgMTAgTSAxMCAwIEwgMTAgNDAiIGZpbGw9Im5vbmUiIHN0cm9rZT0icmdiYSgwLDAsMCwwLjAzKSIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-50" />
       </motion.div>
-
       {/* --- Top Navigation / User Status (Sticky) --- */}
       <motion.header 
         style={{ opacity: opacityFade }}
         className="sticky top-0 z-50 w-full px-6 py-4 flex justify-between items-center max-w-[120rem] mx-auto"
       >
         <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-foreground rounded-full flex items-center justify-center shadow-lg">
-            <TreeLogo size={24} className="text-accent-green" />
-          </div>
+
           <span className="font-heading text-xl hidden md:block text-foreground tracking-tight">Green Challenge</span>
         </div>
 
@@ -215,7 +210,6 @@ export default function HomePage() {
           </Link>
         )}
       </motion.header>
-
       {/* --- Main Content Area --- */}
       <main className="relative z-10 w-full max-w-[120rem] mx-auto px-4 md:px-8 flex flex-col gap-16 md:gap-32 pt-8">
         
@@ -444,12 +438,10 @@ export default function HomePage() {
         )}
 
       </main>
-
       {/* --- Preserved Components --- */}
       <div className="relative z-50">
         <BottomNav />
       </div>
-      
       {todayChallenge && (
         <ProofSubmissionDialog
           isOpen={showProofDialog}

@@ -105,22 +105,10 @@ export default function SocialWallPage() {
           </p>
         </div>
       </div>
-
       <div className="max-w-[100rem] mx-auto px-6 py-6">
         {/* Filter */}
         <div className="mb-6 flex items-center gap-3 overflow-x-auto pb-2">
-          <Button
-            onClick={() => setFilterClass(null)}
-            variant={filterClass === null ? 'default' : 'outline'}
-            className={`rounded-full font-paragraph font-semibold whitespace-nowrap ${
-              filterClass === null
-                ? 'bg-accent-blue text-secondary-foreground'
-                : 'border-foreground/20 text-foreground'
-            }`}
-          >
-            <Filter className="w-4 h-4 mr-2" />
-            Toutes les promos
-          </Button>
+
           {classes.map((className) => (
             <Button
               key={className}
@@ -235,7 +223,6 @@ export default function SocialWallPage() {
           )}
         </div>
       </div>
-
       <BottomNav />
     </div>
   );
