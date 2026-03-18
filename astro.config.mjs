@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import vercel from "@astrojs/vercel"; // Modifié ici
+import cloudflare from "@astrojs/cloudflare"; // On repasse sur Cloudflare
 import wix from "@wix/astro";
 import monitoring from "@wix/monitoring-astro";
 import react from "@astrojs/react";
@@ -12,10 +12,9 @@ import postcssPseudoToData from "@wix/postcss-pseudo-to-data";
 
 const isBuild = process.env.NODE_ENV == "production";
 
-// https://astro.build/config
 export default defineConfig({
   output: "server",
-  adapter: vercel(), // Modifié ici pour Vercel
+  adapter: cloudflare(), // Utilisation de l'adaptateur Cloudflare officiel
   integrations: [
     {
       name: "framewire",
@@ -46,38 +45,18 @@ export default defineConfig({
     cacheDir: 'node_modules/.cache/.vite',
     optimizeDeps: {
       include: [
-        'react',
-        'react-dom',
-        'zustand',
-        'framer-motion',
-        'date-fns',
-        'clsx',
-        'class-variance-authority',
-        'tailwind-merge',
-        '@radix-ui/*',
-        '@wix/*',
-        'zod',
+        'react', 'react-dom', 'zustand', 'framer-motion', 
+        'date-fns', 'clsx', 'class-variance-authority', 
+        'tailwind-merge', '@radix-ui/*', '@wix/*', 'zod'
       ],
     },
     css: !isBuild ? {
       postcss: {
-        plugins: [
-          postcssPseudoToData(),
-        ],
+        plugins: [postcssPseudoToData()],
       },
     } : undefined,
-  },
-  devToolbar: {
-    enabled: false,
   },
   image: {
     domains: ["static.wixstatic.com"],
   },
-  server: {
-    allowedHosts: true,
-    host: true,
-  },
-  security: {
-    checkOrigin: false
-  }
 });
